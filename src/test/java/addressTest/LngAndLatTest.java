@@ -12,15 +12,20 @@ public class LngAndLatTest {
 
 	@Test
 	public void test1() {
-		Map<String, Double> inf = BaiduMap.getLngAndLat("上海东方康达家苑二期");
+		Map<String, Double> inf = BaiduMap.getLngAndLat("11");
 		BaiduMap.getProvinceAndCity(inf.get("lng"), inf.get("lat"));
 	}
 	
 	@Test
 	public void test2() {
-		Map<String, Double> inf = BaiduMap.getLngAndLat("合肥市安徽合肥市瑶海区临泉路美晨雅阁东苑7幢310");
+		Map<String, Double> inf = BaiduMap.getLngAndLat("合肥合肥安徽省合肥市新站区星港湾家园西13幢605室");
 		Map<String, String> detailedMap = BaiduMap.getProvinceAndCity(inf.get("lng"), inf.get("lat"));
 		System.out.println(detailedMap);
 	}
-
+	@Test
+	public void test3() {
+		
+		Map<String, String> detailedMap = BaiduMap.getProvinceAndCity(0.0, 0.0);
+		System.out.println(detailedMap);
+	}
 }

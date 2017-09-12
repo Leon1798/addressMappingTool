@@ -5,6 +5,7 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 
 import com.csvreader.CsvReader;
+import com.csvreader.CsvWriter;
 
 public class CsvHandler {
 	public static ArrayList<String[]> readCSV(String FilePath) {  
@@ -36,4 +37,23 @@ public class CsvHandler {
 	    }
 		return null;  
 	}  
+	
+	 /**
+     * Ð´ÈëCSVÎÄ¼þ
+     */
+    public static void writeCsv(ArrayList<String[]> contentList,String filePath){
+        try {
+            
+            String csvFilePath = filePath;
+             CsvWriter wr =new CsvWriter(csvFilePath,',',Charset.forName("GBK"));
+             //String[] contents = {"aaaaa","bbbbb","cccccc","ddddddddd"};
+             for(String[] content: contentList){
+            	 wr.writeRecord(content);
+             }
+             
+             wr.close();
+         } catch (IOException e) {
+            e.printStackTrace();
+         }
+    }
 }
