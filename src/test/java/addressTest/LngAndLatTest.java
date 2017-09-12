@@ -18,7 +18,7 @@ public class LngAndLatTest {
 	
 	@Test
 	public void test2() {
-		Map<String, Double> inf = BaiduMap.getLngAndLat("合肥合肥安徽省合肥市新站区星港湾家园西13幢605室");
+		Map<String, Double> inf = BaiduMap.getLngAndLat("合肥六安市舒城县城关镇广厦路凤池苑牡丹园2幢108室");
 		Map<String, String> detailedMap = BaiduMap.getProvinceAndCity(inf.get("lng"), inf.get("lat"));
 		System.out.println(detailedMap);
 	}
