@@ -29,14 +29,21 @@ public class BaiduMap {
 		try {
 			String json = loadJSON(url);
 			JSONObject obj = JSONObject.fromObject(json);
-			if (obj.get("status").toString().equals("0")) {
+			String status = obj.get("status").toString();
+			if ("0".equals(status)) {
 				double lng = obj.getJSONObject("result").getJSONObject("location").getDouble("lng");
 				double lat = obj.getJSONObject("result").getJSONObject("location").getDouble("lat");
 				map.put("lng", getDecimal(lng));
 				map.put("lat", getDecimal(lat));
 				System.out.println("经度：" + lng + "---纬度：" + lat);
+			} else if ("4".equals(status)||status.startsWith("3")) {
+				System.out.println("------------------配额校验失败,程序退出------------------");
+				System.exit(0);
+			} else if ("5".equals(status)) {
+				System.out.println("------------------ak不存在或者非法------------------");
+				return obj;
 			} else {
-				System.out.println("未找到相匹配的经纬度！直接给0.0,0.0");
+				System.out.println("------------------未找到相匹配的经纬度！直接给0.0,0.0------------------");
 				map.put("lng", getDecimal(0.0));
 				map.put("lat", getDecimal(0.0));
 			}
@@ -54,7 +61,8 @@ public class BaiduMap {
 		try {
 			String json = loadJSON(url);
 			JSONObject obj = JSONObject.fromObject(json);
-			if (obj.get("status").toString().equals("0")) {
+			String status = obj.get("status").toString();
+			if ("0".equals(status)) {
 				String province = obj.getJSONObject("result").getJSONObject("addressComponent").getString("province");
 				String city = obj.getJSONObject("result").getJSONObject("addressComponent").getString("city");
 				String district = obj.getJSONObject("result").getJSONObject("addressComponent").getString("district");
@@ -69,6 +77,12 @@ public class BaiduMap {
 				map.put("street", street);
 				// System.out.println(obj);
 				// System.out.println(province+city);
+			} else if ("4".equals(status)||status.startsWith("3")) {
+				System.out.println("------------------配额校验失败,程序退出------------------");
+				System.exit(0);
+			} else if ("5".equals(status)) {
+				System.out.println("------------------ak不存在或者非法------------------");
+				return obj;
 			} else {
 				// LogUtil.debug("未找到相匹配的经纬度！");
 				System.out.println("地址库里无此数据，直接给错误");

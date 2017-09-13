@@ -26,11 +26,11 @@ public class CsvHandler {
 	        reader.close();  
 	          
 	        // 遍历读取的CSV文件  
-	        for (int row = 0; row < csvFileList.size(); row++) {  
+	        /*for (int row = 0; row < csvFileList.size(); row++) {  
 	            // 取得第row行第0列的数据  
 	            String cell = csvFileList.get(row)[0];  
 	            System.out.println("------------>"+cell);  
-	        }  
+	        } */ 
 	        return csvFileList;
 	    } catch (IOException e) {  
 	        e.printStackTrace();  
