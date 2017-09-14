@@ -22,7 +22,7 @@ public class Demo {
 			} else {
 				row.clear();
 				System.out.println(a[4]);
-				Map<String, Double> inf = BaiduMap.getLngAndLat(a[2]);
+				Map<String, Double> inf = BaiduMap.getLngAndLat(a[2].trim());
 				Map<String, String> detailedMap = BaiduMap.getProvinceAndCity(inf.get("lng"), inf.get("lat"));
 				a[5] = detailedMap.get("province");
 				a[6] = detailedMap.get("city");
@@ -30,6 +30,7 @@ public class Demo {
 				a[8] = inf.get("lat").toString();
 				a[9] = a[5] + a[6] + a[2];
 				row.add(a);
+				System.out.println("写文件："+a[0]+a);
 				CsvHandler.writeCsv(row, "C://Users//Administrator//Desktop//待处理//替换完成的csv//" + a[0] + ".csv");
 			}
 
